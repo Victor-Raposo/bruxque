@@ -9,7 +9,7 @@
 body {
     background-color: #0d1b2a;
     background-image: radial-gradient(circle at 20% 30%, #1a3a5c 0%, transparent 50%),
-                      radial-gradient(circle at 80% 70%, #0f3d2e 0%, transparent 50%);
+    radial-gradient(circle at 80% 70%, #0f3d2e 0%, transparent 50%);
     min-height: 100vh;
     display: flex;
     align-items: center;

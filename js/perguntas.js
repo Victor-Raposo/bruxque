@@ -30,6 +30,30 @@ const perguntas = {
         // adicione as perguntas do mundo 2 aqui
     ],
     mundo3: [
-        // adicione as perguntas do mundo 3 aqui
+        {
+            pergunta: "QUAL O MAIOR SHOPPING DE ROUPAS DE BRUSQUE?",
+            opcoes: ["HAVAN", "FIP", "GRACHER"],
+            resposta: 1
+        },
+        {
+            pergunta: "BRUSQUE É CONHECIDA COMO A CIDADE DOS ______",
+            opcoes: ["SAPATOS", "SUCOS", "TECIDOS"],
+            resposta: 2
+        },
+        {
+            pergunta: "QUAL RIO ATRAVESSA A CIDADE DE BRUSQUE?",
+            opcoes: ["RIO AMAZONAS", "RIO SÃO-FRANCISCO", "RIO ITAJAÍ-MIRIM"],
+            resposta: 2
+        },
+        {
+            pergunta: "PAÍS QUE INFLUENCIOU A CULTURA DE BRUSQUE",
+            opcoes: ["RUSSA", "ITALIANA", "ESPANHOLA"],
+            resposta: 1
+        },
+        {
+            pergunta: "QUAL FOI A PRIMEIRA EDIÇÃO DA FENARRECO?",
+            opcoes: ["1986", "1911", "2001"],
+            resposta: 0
+        },
     ]
 };
