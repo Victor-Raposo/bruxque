@@ -27,7 +27,31 @@ const perguntas = {
         },
     ],
     mundo2: [
-        // adicione as perguntas do mundo 2 aqui
+        {
+            pergunta: "QUAL DESSAS AVES QUE POR LEI MUNICIPAL É O SÍMBOLO DE BRUSQUE?",
+            opcoes: ["ERRADA", "CERTA", "ERRADA"],
+            resposta: 1
+        },
+        {
+            pergunta: "PERGUNTA SOBRE O VÍDEO",
+            opcoes: ["ERADDA", "ERRADA", "CERTA"],
+            resposta: 2
+        },
+        {
+            pergunta: "PINTE A BANDEIRA",
+            opcoes: ["ERRADA", "ERRADA", "CERTA"],
+            resposta: 2
+        },
+        {
+            pergunta: "QUAL O MASCOTE DA FENARRECO?",
+            opcoes: ["GATO", "MARRECO", "CARNEIRO"],
+            resposta: 1
+        },
+        {
+            pergunta: "QUAL O MAIOR SUPERMERCADO DE BRUSQUE?",
+            opcoes: ["ARCHER", "BISTEK", "ANGELONI"],
+            resposta: 0
+        },
     ],
     mundo3: [
         {

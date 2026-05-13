@@ -37,6 +37,7 @@ main {
     font-weight: 700;
     letter-spacing: 0.15em;
     text-transform: uppercase;
+    text-shadow: 1px 1px 1px black;
     color: white;
     background: rgba(74, 222, 128, 1);
     padding: 0.4rem 1.2rem;

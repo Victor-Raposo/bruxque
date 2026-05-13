@@ -101,8 +101,8 @@ h1 {
 .pergunta {
     width: 100%;
     padding: 1rem 1.5rem;
-    background: rgba(59, 130, 196, 0.800);
-    border: 1px solid rgba(255, 255, 255, 0.12);
+    background: rgb(247, 183, 49);
+    border: 1px solid rgb(173, 129, 34);
     border-radius: 12px;
     color: #ffffff;
     font-family: 'Nunito', sans-serif;
@@ -111,12 +111,13 @@ h1 {
     letter-spacing: 0.05em;
     cursor: pointer;
     text-align: left;
+    text-shadow: 1px 1px 1px black;
     transition: background 0.2s, border-color 0.2s, transform 0.1s;
 }
 
 .pergunta:hover {
-    background: rgba(59, 130, 196, 1);
-    border-color: rgba(255, 255, 255, 0.3);
+    background: rgb(247, 183, 49);
+    border-color: rgb(173, 130, 35);
     transform: translateX(4px);
 }
 
