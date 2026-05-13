@@ -12,6 +12,6 @@ O jogo é dividido em 3 mundos. Um dos mundos é fácil, outro médio, e outro d
 
 ## Membros
 
-Eduardo Vandré Machnicki
-Mateus Gomes Nuss
-Victor Hugo Lira de Souza
+Eduardo Vandré Machnicki,
+Mateus Gomes Nuss,
+Victor Hugo Lira de Souza,
