@@ -34,6 +34,6 @@ Cada mundo possui:
 
 ## Membros
 
-Eduardo Vandré Machnicki,
-Mateus Gomes Nuss,
-Victor Hugo Lira de Souza,
+- Eduardo Vandré Machnicki,
+- Mateus Gomes Nuss,
+- Victor Hugo Lira de Souza
