@@ -8,8 +8,10 @@
 
 body {
     background-color: #0d1b2a;
-    background-image: radial-gradient(circle at 20% 30%, #1a3a5c 0%, transparent 50%),
-    radial-gradient(circle at 80% 70%, #0f3d2e 0%, transparent 50%);
+    background-image: url(../imagens/fundo-fenarreco-1-ghibi\ \(1\).jpg);
+    background-position: top right;
+    background-size: cover;
+    background-repeat: no-repeat;
     min-height: 100vh;
     display: flex;
     align-items: center;
@@ -35,9 +37,9 @@ main {
     font-weight: 700;
     letter-spacing: 0.15em;
     text-transform: uppercase;
-    color: #4ade80;
-    background: rgba(74, 222, 128, 0.1);
-    border: 1px solid rgba(74, 222, 128, 0.3);
+    color: white;
+    background: rgba(74, 222, 128, 0.8);
+    border: 1px solid rgba(74, 222, 128, 0.800);
     padding: 0.4rem 1.2rem;
     border-radius: 99px;
 }
@@ -45,8 +47,11 @@ main {
 /* CONTADOR DE PERGUNTAS */
 .contador {
     font-size: 0.8rem;
-    color: rgba(255,255,255,0.4);
+    color: white);
     letter-spacing: 0.1em;
+    background-color: rgba(0, 0, 0, 0.800);
+    border-radius: 5px;
+    padding: 5px;
 }
 
 /* PERGUNTA */
@@ -61,6 +66,9 @@ h1 {
     display: flex;
     align-items: center;
     justify-content: center;
+    background-color: rgba(0, 0, 0, 0.800);
+    border-radius: 5px;
+    padding: 5px;
 }
 
 /* VIDAS */
@@ -93,7 +101,7 @@ h1 {
 .pergunta {
     width: 100%;
     padding: 1rem 1.5rem;
-    background: rgba(255, 255, 255, 0.05);
+    background: rgba(59, 130, 196, 0.800);
     border: 1px solid rgba(255, 255, 255, 0.12);
     border-radius: 12px;
     color: #ffffff;
@@ -107,7 +115,7 @@ h1 {
 }
 
 .pergunta:hover {
-    background: rgba(255, 255, 255, 0.1);
+    background: rgba(59, 130, 196, 1);
     border-color: rgba(255, 255, 255, 0.3);
     transform: translateX(4px);
 }
@@ -150,25 +158,25 @@ h1 {
 .btn-mundo:active { transform: scale(0.98); }
 
 .btn-facil {
-    background: rgba(74, 222, 128, 0.08);
-    border-color: rgba(74, 222, 128, 0.4);
-    color: #4ade80;
+    background: rgba(74, 222, 128, 0.800);
+    border-color: rgb(51, 153, 88);
+    color: white;
 }
-.btn-facil:hover { background: rgba(74, 222, 128, 0.15); }
+.btn-facil:hover { background: rgba(74, 222, 128, 1); }
 
 .btn-medio {
-    background: rgba(251, 191, 36, 0.08);
-    border-color: rgba(251, 191, 36, 0.4);
-    color: #fbbf24;
+    background: rgba(251, 191, 36, 0.800);
+    border-color: rgba(251, 191, 36, 1);
+    color: white;
 }
-.btn-medio:hover { background: rgba(251, 191, 36, 0.15); }
+.btn-medio:hover { background: rgba(251, 191, 36, 1); }
 
 .btn-dificil {
-    background: rgba(248, 113, 113, 0.08);
-    border-color: rgba(248, 113, 113, 0.4);
-    color: #f87171;
+    background: rgba(248, 113, 113, 0.800);
+    border-color: rgba(248, 113, 113, 1);
+    color: white;
 }
-.btn-dificil:hover { background: rgba(248, 113, 113, 0.15); }
+.btn-dificil:hover { background: rgba(248, 113, 113, 1); }
 
 /* TÍTULO PRINCIPAL (main.html e venceu.html) */
 .titulo-principal {
@@ -185,9 +193,12 @@ h1 {
 
 .subtitulo {
     font-size: 0.9rem;
-    color: rgba(255,255,255,0.4);
+    color: white;
     text-align: center;
     letter-spacing: 0.1em;
+    background-color: rgba(0, 0, 0, 0.800);
+    padding: 5px;
+    border-radius: 3px;
 }
 
 /* TELA DE VITÓRIA */
