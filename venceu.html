@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Você Venceu!</title>
+    <link rel="stylesheet" href="estilos/easy.css">
+    <link rel="stylesheet" href="estilos/media-query.css">
+</head>
+<body>
+    <main>
+        <p class="trofeu">🏆</p>
+        <h1 class="titulo-principal">VOCÊ<br><span>VENCEU!</span></h1>
+        <p class="subtitulo">VOCÊ COMPLETOU TODOS OS MUNDOS DO QUIZ BRUSQUE!</p>
+
+        <div style="margin-top: 1rem;">
+            <button class="btn-reiniciar" onclick="jogarNovamente()">
+                ↺ JOGAR NOVAMENTE
+            </button>
+        </div>
+    </main>
+
+    <script>
+        function jogarNovamente() {
+            localStorage.setItem('vida', 3);
+            window.location.href = 'main.html';
+        }
+    </script>
+</body>
+</html>

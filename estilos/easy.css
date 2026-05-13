@@ -1,0 +1,232 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Nunito:wght@400;700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #0d1b2a;
+    background-image: radial-gradient(circle at 20% 30%, #1a3a5c 0%, transparent 50%),
+                      radial-gradient(circle at 80% 70%, #0f3d2e 0%, transparent 50%);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Nunito', sans-serif;
+    color: #ffffff;
+}
+
+main {
+    width: 100%;
+    max-width: 700px;
+    padding: 2rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+/* TAG DO MUNDO */
+.mundo-tag {
+    font-family: 'Nunito', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: #4ade80;
+    background: rgba(74, 222, 128, 0.1);
+    border: 1px solid rgba(74, 222, 128, 0.3);
+    padding: 0.4rem 1.2rem;
+    border-radius: 99px;
+}
+
+/* CONTADOR DE PERGUNTAS */
+.contador {
+    font-size: 0.8rem;
+    color: rgba(255,255,255,0.4);
+    letter-spacing: 0.1em;
+}
+
+/* PERGUNTA */
+h1 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(1.6rem, 4vw, 2.4rem);
+    text-align: center;
+    line-height: 1.2;
+    color: #ffffff;
+    letter-spacing: 0.05em;
+    min-height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* VIDAS */
+.vidas-container {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.9rem;
+    color: rgba(255,255,255,0.6);
+}
+
+.coracao {
+    font-size: 1.2rem;
+    transition: transform 0.2s;
+}
+
+.coracao.perdida {
+    filter: grayscale(1);
+    opacity: 0.3;
+}
+
+/* BOTÕES DE RESPOSTA */
+#contPerguntas {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.pergunta {
+    width: 100%;
+    padding: 1rem 1.5rem;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 12px;
+    color: #ffffff;
+    font-family: 'Nunito', sans-serif;
+    font-size: 1rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    cursor: pointer;
+    text-align: left;
+    transition: background 0.2s, border-color 0.2s, transform 0.1s;
+}
+
+.pergunta:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.3);
+    transform: translateX(4px);
+}
+
+.pergunta:active {
+    transform: scale(0.98);
+}
+
+.pergunta.correta {
+    background: rgba(74, 222, 128, 0.15);
+    border-color: #4ade80;
+    color: #4ade80;
+}
+
+.pergunta.errada {
+    background: rgba(248, 113, 113, 0.15);
+    border-color: #f87171;
+    color: #f87171;
+}
+
+/* BOTÕES DA TELA INICIAL E FINAL */
+.btn-mundo {
+    width: 100%;
+    padding: 1.1rem 1.5rem;
+    border-radius: 12px;
+    border: 1px solid;
+    font-family: 'Nunito', sans-serif;
+    font-size: 1rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    cursor: pointer;
+    transition: transform 0.15s, background 0.2s;
+    text-align: left;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.btn-mundo:hover { transform: translateX(4px); }
+.btn-mundo:active { transform: scale(0.98); }
+
+.btn-facil {
+    background: rgba(74, 222, 128, 0.08);
+    border-color: rgba(74, 222, 128, 0.4);
+    color: #4ade80;
+}
+.btn-facil:hover { background: rgba(74, 222, 128, 0.15); }
+
+.btn-medio {
+    background: rgba(251, 191, 36, 0.08);
+    border-color: rgba(251, 191, 36, 0.4);
+    color: #fbbf24;
+}
+.btn-medio:hover { background: rgba(251, 191, 36, 0.15); }
+
+.btn-dificil {
+    background: rgba(248, 113, 113, 0.08);
+    border-color: rgba(248, 113, 113, 0.4);
+    color: #f87171;
+}
+.btn-dificil:hover { background: rgba(248, 113, 113, 0.15); }
+
+/* TÍTULO PRINCIPAL (main.html e venceu.html) */
+.titulo-principal {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(2.5rem, 8vw, 4.5rem);
+    letter-spacing: 0.08em;
+    text-align: center;
+    line-height: 1;
+}
+
+.titulo-principal span {
+    color: #4ade80;
+}
+
+.subtitulo {
+    font-size: 0.9rem;
+    color: rgba(255,255,255,0.4);
+    text-align: center;
+    letter-spacing: 0.1em;
+}
+
+/* TELA DE VITÓRIA */
+.trofeu {
+    font-size: 4rem;
+    text-align: center;
+}
+
+.btn-reiniciar {
+    padding: 1rem 2.5rem;
+    background: rgba(74, 222, 128, 0.1);
+    border: 1px solid rgba(74, 222, 128, 0.4);
+    border-radius: 12px;
+    color: #4ade80;
+    font-family: 'Nunito', sans-serif;
+    font-size: 1rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.1s;
+}
+
+.btn-reiniciar:hover {
+    background: rgba(74, 222, 128, 0.2);
+    transform: translateY(-2px);
+}
+
+/* BARRA DE PROGRESSO */
+.barra-container {
+    width: 100%;
+    height: 4px;
+    background: rgba(255,255,255,0.08);
+    border-radius: 99px;
+    overflow: hidden;
+}
+
+.barra-fill {
+    height: 100%;
+    background: #4ade80;
+    border-radius: 99px;
+    transition: width 0.4s ease;
+}

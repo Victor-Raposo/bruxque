@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mundo 1 — Fácil</title>
+    <link rel="stylesheet" href="estilos/easy.css">
+    <link rel="stylesheet" href="estilos/media-query.css">
+</head>
+<body>
+    <main>
+        <span class="mundo-tag">🌱 MUNDO 1 — FÁCIL</span>
+
+        <div class="barra-container">
+            <div class="barra-fill" id="barra" style="width: 0%"></div>
+        </div>
+
+        <p class="contador" id="contador">PERGUNTA 1 DE 5</p>
+
+        <h1 id="textoPergunta"></h1>
+
+        <div class="vidas-container">
+            <span id="coracoes"></span>
+        </div>
+
+        <div id="contPerguntas"></div>
+    </main>
+
+    <script src="js/vida.js"></script>
+    <script src="js/perguntas.js"></script>
+    <script src="js/shuffle.js"></script>
+    <script>
+        const perguntasEmbaralhadas = shuffle(perguntas.mundo1);
+        let indicePergunta = 0;
+        const total = perguntasEmbaralhadas.length;
+
+        function atualizarCoracoes() {
+            let html = '';
+            for (let i = 0; i < 3; i++) {
+                html += '<span class="coracao' + (i >= vida ? ' perdida' : '') + '">❤️</span>';
+            }
+            document.getElementById('coracoes').innerHTML = html;
+        }
+
+        function mostrarPergunta() {
+            const atual = perguntasEmbaralhadas[indicePergunta];
+
+            document.getElementById('textoPergunta').innerHTML = atual.pergunta;
+            document.getElementById('contador').innerHTML = 'PERGUNTA ' + (indicePergunta + 1) + ' DE ' + total;
+            document.getElementById('barra').style.width = (indicePergunta / total * 100) + '%';
+
+            const container = document.getElementById('contPerguntas');
+            container.innerHTML = '';
+
+            atual.opcoes.forEach(function(opcao, indice) {
+                const botao = document.createElement('button');
+                botao.className = 'pergunta';
+                botao.type = 'button';
+                botao.innerHTML = opcao;
+
+                if (indice === atual.resposta) {
+                    botao.onclick = function() {
+                        botao.classList.add('correta');
+                        desabilitarBotoes();
+                        setTimeout(function() {
+                            indicePergunta++;
+                            if (indicePergunta < total) {
+                                mostrarPergunta();
+                            } else {
+                                window.location.href = 'mundo2.html';
+                            }
+                        }, 600);
+                    };
+                } else {
+                    botao.onclick = function() {
+                        botao.classList.add('errada');
+                        perdeVida();
+                    };
+                }
+
+                container.appendChild(botao);
+            });
+        }
+
+        function desabilitarBotoes() {
+            document.querySelectorAll('.pergunta').forEach(function(b) {
+                b.onclick = null;
+                b.style.opacity = '0.5';
+            });
+        }
+
+        function perdeVida() {
+            vida = vida - 1;
+            atualizarCoracoes();
+            if (vida <= 0) {
+                setTimeout(function() {
+                    window.location.href = 'main.html';
+                }, 800);
+            }
+            localStorage.setItem('vida', vida);
+        }
+
+        atualizarCoracoes();
+        mostrarPergunta();
+    </script>
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz Brusque</title>
+    <link rel="stylesheet" href="estilos/easy.css">
+    <link rel="stylesheet" href="estilos/media-query.css">
+</head>
+<body>
+    <main>
+        <p class="subtitulo">BEM-VINDO AO</p>
+        <h1 class="titulo-principal">QUIZ<br><span>BRUSQUE</span></h1>
+        <p class="subtitulo">ESCOLHA O NÍVEL PARA COMEÇAR</p>
+
+        <div id="contPerguntas" style="margin-top: 1rem;">
+            <button class="btn-mundo btn-facil" onclick="iniciarJogo('mundo1.html')">
+                 MUNDO 1 — FÁCIL
+            </button>
+            <button class="btn-mundo btn-medio" onclick="iniciarJogo('mundo2.html')">
+                 MUNDO 2 — MÉDIO
+            </button>
+            <button class="btn-mundo btn-dificil" onclick="iniciarJogo('mundo3.html')">
+                 MUNDO 3 — DIFÍCIL
+            </button>
+        </div>
+
+        <script>
+            function iniciarJogo(destino) {
+                localStorage.setItem('vida', 3);
+                window.location.href = destino;
+            }
+        </script>
+    </main>
+</body>
+</html>
