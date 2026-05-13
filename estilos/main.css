@@ -110,7 +110,6 @@ h1 {
     letter-spacing: 0.05em;
     cursor: pointer;
     text-align: left;
-    text-shadow: 1px 1px 1px black;
     transition: background 0.2s, border-color 0.2s, transform 0.1s;
 }
 
@@ -158,23 +157,26 @@ h1 {
 .btn-mundo:active { transform: scale(0.98); }
 
 .btn-facil {
-    background: rgba(74, 222, 128, 0.800);
+    background: rgba(74, 222, 128, 1);
     border-color: rgb(51, 153, 88);
     color: white;
+    text-shadow: 1px 1px 1px black;
 }
 .btn-facil:hover { background: rgba(74, 222, 128, 1); }
 
 .btn-medio {
-    background: rgba(251, 191, 36, 0.800);
-    border-color: rgba(251, 191, 36, 1);
+    background: rgba(251, 191, 36, 1);
+    border-color: rgb(182, 138, 26);
     color: white;
+    text-shadow: 1px 1px 1px black;
 }
 .btn-medio:hover { background: rgba(251, 191, 36, 1); }
 
 .btn-dificil {
-    background: rgba(248, 113, 113, 0.800);
-    border-color: rgba(248, 113, 113, 1);
+    background: rgba(248, 113, 113, 1);
+    border-color: rgb(175, 70, 70);
     color: white;
+    text-shadow: 1px 1px 1px black;
 }
 .btn-dificil:hover { background: rgba(248, 113, 113, 1); }
 
