@@ -34,12 +34,21 @@
         let indicePergunta = 0;
         const total = perguntasEmbaralhadas.length;
 
-        function atualizarCoracoes() {
+       function atualizarCoracoes(animar = false) {
             let html = '';
             for (let i = 0; i < 3; i++) {
-                html += '<span class="coracao' + (i >= vida ? ' perdida' : '') + '">❤️</span>';
+                const classe = i >= vida ? ' perdida' : (animar ? ' resetando' : '');
+                html += '<span class="coracao' + classe + '">❤️</span>';
             }
             document.getElementById('coracoes').innerHTML = html;
+
+            if (animar) {
+                setTimeout(function () {
+                    document.querySelectorAll('.coracao').forEach(function (c) {
+                        c.classList.remove('resetando');
+                    });
+                }, 1000);
+            }
         }
 
         function mostrarPergunta() {
@@ -73,7 +82,7 @@
                             } else {
                                 window.location.href = 'venceu.html';
                             }
-                        }, 600);
+                        }, 1000);
                     };
                 } else {
                     botao.onclick = function() {
