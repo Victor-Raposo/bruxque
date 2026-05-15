@@ -1,0 +1,189 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Nunito:wght@400;700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #0d1b2a;
+    background-image: url(https://media.discordapp.net/attachments/1097881292365905961/1504967787775528960/fundo-fenarreco-1-ghibi.jpg?ex=6a08e9f9&is=6a079879&hm=00e5db902f6d0b2217fd84d512e011690876bae5ecbedfcb77a60e8aaa5ba22c&=&format=webp);
+    background-position: top right;
+    background-size: cover;
+    background-repeat: no-repeat;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Nunito', sans-serif;
+    color: #ffffff;
+}
+
+main {
+    width: 100%;
+    max-width: 700px;
+    padding: 2rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+/* GIF CAPIVARA */
+
+#capivara1 {
+    position: relative;
+    top: 182px;
+    right: 150px;
+    width: 80px;
+    margin: 0px;
+}
+
+/* TAG DO MUNDO */
+.mundo-tag {
+    font-family: 'Nunito', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    text-shadow: 1px 1px 1px black;
+    color: white;
+    background: rgba(74, 222, 128, 1);
+    padding: 0.4rem 1.2rem;
+    border-radius: 99px;
+}
+
+/* CONTADOR DE PERGUNTAS */
+.contador {
+    font-size: 0.8rem;
+    color: white;
+    letter-spacing: 0.1em;
+    background-color: rgba(0, 0, 0, 0.800);
+    border-radius: 5px;
+    padding: 5px;
+}
+
+/* PERGUNTA */
+h1 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(1.6rem, 4vw, 2.4rem);
+    text-align: center;
+    line-height: 1.2;
+    color: #ffffff;
+    letter-spacing: 0.05em;
+    min-height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(0, 0, 0, 0.800);
+    border-radius: 5px;
+    padding: 5px;
+}
+
+/* VIDAS */
+.vidas-container {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.9rem;
+    color: rgba(255,255,255,0.6);
+}
+
+.coracao {
+    font-size: 1.2rem;
+    transition: transform 0.2s;
+}
+
+.coracao.perdida {
+    filter: grayscale(1);
+    opacity: 0.3;
+}
+
+/* BOTÕES DE RESPOSTA */
+#contPerguntas {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.pergunta {
+    width: 100%;
+    padding: 1rem 1.5rem;
+    background: rgba(59, 130, 196, 1);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 12px;
+    color: #ffffff;
+    font-family: 'Nunito', sans-serif;
+    font-size: 1rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    cursor: pointer;
+    text-align: left;
+    text-shadow: 1px 1px 1px black;
+    transition: background 0.2s, border-color 0.2s, transform 0.1s;
+}
+
+.pergunta:hover {
+    background: rgba(59, 130, 196, 1);
+    border-color: rgba(255, 255, 255, 0.3);
+    transform: translateX(4px);
+}
+
+.pergunta:active {
+    transform: scale(0.98);
+}
+
+.pergunta.correta {
+    background: rgba(74, 222, 128, 1);
+    border-color: #4ade80;
+    color: white;
+}
+
+.pergunta.errada {
+    background: rgba(248, 113, 113, 1);
+    border-color: #f87171;
+    color: white;
+}
+
+
+
+/* TÍTULO PRINCIPAL (main.html e venceu.html) */
+.titulo-principal {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(2.5rem, 8vw, 4.5rem);
+    letter-spacing: 0.08em;
+    text-align: center;
+    line-height: 1;
+}
+
+.titulo-principal span {
+    color: #4ade80;
+}
+
+.subtitulo {
+    font-size: 0.9rem;
+    color: white;
+    text-align: center;
+    letter-spacing: 0.1em;
+    background-color: rgba(0, 0, 0, 0.800);
+    padding: 5px;
+    border-radius: 3px;
+}
+
+/* BARRA DE PROGRESSO */
+.barra-container {
+    width: 100%;
+    height: 4px;
+    background: rgba(255,255,255,0.08);
+    border-radius: 99px;
+    overflow: hidden;
+}
+
+.barra-fill {
+    height: 100%;
+    background: #4ade80;
+    border-radius: 99px;
+    transition: width 0.4s ease;
+}

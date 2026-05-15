@@ -1,21 +1,102 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mundo 2 — Médio</title>
     <link rel="stylesheet" href="estilos/medium.css">
     <link rel="stylesheet" href="estilos/media-query.css">
+    <style>
+        #contPerguntas.grade-imagens {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.75rem;
+        }
+
+        .opcao-imagem {
+            position: relative;
+            border-radius: 12px;
+            overflow: hidden;
+            cursor: pointer;
+            border: 3px solid transparent;
+            transition: border-color 0.2s, transform 0.15s;
+        }
+
+        .opcao-imagem:hover {
+            border-color: rgba(255, 255, 255, 0.5);
+            transform: scale(1.02);
+        }
+
+        .opcao-imagem img {
+            width: 100%;
+            height: 160px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .opcao-imagem .nome-ave {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            font-family: 'Nunito', sans-serif;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-align: center;
+            padding: 6px 4px;
+            letter-spacing: 0.08em;
+        }
+
+        .opcao-imagem.correta {
+            border-color: #4ade80;
+            box-shadow: 0 0 20px rgba(74, 222, 128, 0.5);
+        }
+
+        .opcao-imagem.errada {
+            border-color: #f87171;
+            opacity: 0.5;
+        }
+
+        .opcao-imagem.desabilitada {
+            cursor: default;
+            pointer-events: none;
+        }
+
+        .video-container {
+            width: 100%;
+            border-radius: 12px;
+            overflow: hidden;
+            background: #000;
+            aspect-ratio: 9/16;
+            max-height: 340px;
+        }
+
+        .video-container iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+            display: block;
+        }
+    </style>
+
 </head>
+
 <body>
     <main>
-        <span class="mundo-tag" style="color:white; background:rgb(247, 183, 49); border-color:rgb(247, 183, 49); text-shadow: 1px 1px 1px black;">⚡ MUNDO 2 — MÉDIO</span>
+        <span class="mundo-tag"
+            style="color:white; background:rgb(247, 183, 49); border-color:rgb(247, 183, 49); text-shadow: 1px 1px 1px black;">⚡
+            MUNDO 2 — MÉDIO</span>
 
         <div class="barra-container">
             <div class="barra-fill" id="barra" style="width: 0%; background: #fbbf24;"></div>
         </div>
 
         <p class="contador" id="contador">PERGUNTA 1 DE 5</p>
+
+        <div class="video-container" id="videoContainer" style="display:none;"></div>
 
         <h1 id="textoPergunta"></h1>
 
@@ -34,7 +115,7 @@
         let indicePergunta = 0;
         const total = perguntasEmbaralhadas.length;
 
-      function atualizarCoracoes(animar = false) {
+        function atualizarCoracoes(animar = false) {
             let html = '';
             for (let i = 0; i < 3; i++) {
                 const classe = i >= vida ? ' perdida' : (animar ? ' resetando' : '');
@@ -51,6 +132,25 @@
             }
         }
 
+        // ← ADICIONADO: função avancar (centraliza lógica de próxima pergunta)
+        function avancar() {
+            document.getElementById('videoContainer').innerHTML = '';
+            document.getElementById('videoContainer').style.display = 'none';
+            indicePergunta++;
+            if (indicePergunta < total) {
+                mostrarPergunta();
+            } else {
+                vida = 3;
+                localStorage.setItem('vida', 3);
+                atualizarCoracoes(true);
+                setTimeout(function () {
+                    // ← ALTERADO: era 'mundo3.html', agora vai para transição
+                    window.location.href = 'transicao.html?para=mundo3.html&mundo=3';
+                }, 1200);
+            }
+        }
+
+        // ← ALTERADO: mostrarPergunta agora detecta tipo "imagem" e "video"
         function mostrarPergunta() {
             if (total === 0) {
                 document.getElementById('textoPergunta').innerHTML = 'PERGUNTAS DO MUNDO 2 AINDA NÃO FORAM ADICIONADAS.';
@@ -65,43 +165,107 @@
             const container = document.getElementById('contPerguntas');
             container.innerHTML = '';
 
-            atual.opcoes.forEach(function(opcao, indice) {
-                const botao = document.createElement('button');
-                botao.className = 'pergunta';
-                botao.type = 'button';
-                botao.innerHTML = opcao;
+            // ── PERGUNTA DE IMAGEM (aves) ──────────────────────────────
+            if (atual.tipo === 'imagem') {
+                document.getElementById('videoContainer').style.display = 'none';
+                container.classList.add('grade-imagens');
 
-                if (indice === atual.resposta) {
-                    botao.onclick = function() {
-                        botao.classList.add('correta');
-                        desabilitarBotoes();
-                        setTimeout(function() {
-                            indicePergunta++;
-                            if (indicePergunta < total) {
-                                mostrarPergunta();
-                            } else {
-                                vida = 3;
-                                localStorage.setItem('vida', 3);
-                                atualizarCoracoes(true);
-                                setTimeout(function() {
-                                    window.location.href = 'mundo3.html';
-                                }, 1200);
-                            }
-                        }, 1000);
-                    };
-                } else {
-                    botao.onclick = function() {
-                        botao.classList.add('errada');
-                        perdeVida();
-                    };
-                }
+                const opcoesComIndice = atual.opcoes.map(function (op, i) {
+                    return { imagem: op.imagem, nome: op.nome, indiceOriginal: i };
+                });
+                const opcoesEmbaralhadas = shuffle(opcoesComIndice);
 
-                container.appendChild(botao);
-            });
+                opcoesEmbaralhadas.forEach(function (opcao) {
+                    const div = document.createElement('div');
+                    div.className = 'opcao-imagem';
+
+                    const img = document.createElement('img');
+                    img.src = opcao.imagem;
+                    img.alt = opcao.nome;
+
+                    const nome = document.createElement('div');
+                    nome.className = 'nome-ave';
+                    nome.textContent = opcao.nome;
+
+                    div.appendChild(img);
+                    div.appendChild(nome);
+
+                    if (opcao.indiceOriginal === atual.resposta) {
+                        div.onclick = function () {
+                            div.classList.add('correta');
+                            document.querySelectorAll('.opcao-imagem').forEach(function (d) {
+                                d.classList.add('desabilitada');
+                            });
+                            setTimeout(avancar, 800);
+                        };
+                    } else {
+                        div.onclick = function () {
+                            div.classList.add('errada');
+                            perdeVida();
+                        };
+                    }
+
+                    container.appendChild(div);
+                });
+
+                // ── PERGUNTA DE VÍDEO ──────────────────────────────────────
+            } else if (atual.tipo === 'video') {
+                container.classList.remove('grade-imagens');
+                const videoContainer = document.getElementById('videoContainer');
+                videoContainer.style.display = 'block';
+                videoContainer.innerHTML = '<iframe src="https://www.youtube.com/embed/' + atual.videoId + '?autoplay=1" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>';
+
+                atual.opcoes.forEach(function (opcao, indice) {
+                    const botao = document.createElement('button');
+                    botao.className = 'pergunta';
+                    botao.type = 'button';
+                    botao.innerHTML = opcao;
+
+                    if (indice === atual.resposta) {
+                        botao.onclick = function () {
+                            botao.classList.add('correta');
+                            desabilitarBotoes();
+                            setTimeout(avancar, 600);
+                        };
+                    } else {
+                        botao.onclick = function () {
+                            botao.classList.add('errada');
+                            perdeVida();
+                        };
+                    }
+                    container.appendChild(botao);
+                });
+
+                // ── PERGUNTA NORMAL (igual ao original) ────────────────────
+            } else {
+                document.getElementById('videoContainer').style.display = 'none';
+                container.classList.remove('grade-imagens');
+
+                atual.opcoes.forEach(function (opcao, indice) {
+                    const botao = document.createElement('button');
+                    botao.className = 'pergunta';
+                    botao.type = 'button';
+                    botao.innerHTML = opcao;
+
+                    if (indice === atual.resposta) {
+                        botao.onclick = function () {
+                            botao.classList.add('correta');
+                            desabilitarBotoes();
+                            setTimeout(avancar, 600);
+                        };
+                    } else {
+                        botao.onclick = function () {
+                            botao.classList.add('errada');
+                            perdeVida();
+                        };
+                    }
+                    container.appendChild(botao);
+                });
+            }
         }
 
         function desabilitarBotoes() {
-            document.querySelectorAll('.pergunta').forEach(function(b) {
+            document.querySelectorAll('.pergunta').forEach(function (b) {
                 b.onclick = null;
                 b.style.opacity = '0.5';
             });
@@ -111,13 +275,15 @@
             vida = vida - 1;
             atualizarCoracoes();
             if (vida <= 0) {
-                setTimeout(function() { window.location.href = 'main.html'; }, 800);
+                setTimeout(function () { window.location.href = 'main.html'; }, 800);
             }
             localStorage.setItem('vida', vida);
         }
 
         atualizarCoracoes();
         mostrarPergunta();
+
     </script>
 </body>
+
 </html>

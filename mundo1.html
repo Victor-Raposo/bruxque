@@ -9,7 +9,7 @@
 </head>
 <body>
     <main>
-        <img id="capivara1" src="imagens/capivara1.png" alt="Capivara">
+        <img id="capivara1" src="https://media.discordapp.net/attachments/1097881292365905961/1504967786743599165/capivara1.png?ex=6a08e9f9&is=6a079879&hm=6361ece9d0bd1d4d973d9725e84513adec3416b4a44f542e9a9966abedb84e64&=&format=webp&quality=lossless" alt="Capivara">
         <span class="mundo-tag">🌱 MUNDO 1 — FÁCIL</span>
 
         <div class="barra-container">
@@ -31,92 +31,94 @@
     <script src="js/perguntas.js"></script>
     <script src="js/shuffle.js"></script>
     <script>
-        const perguntasEmbaralhadas = shuffle(perguntas.mundo1);
-        let indicePergunta = 0;
-        const total = perguntasEmbaralhadas.length;
+               const perguntasEmbaralhadas = shuffle(perguntas.mundo1);
+                let indicePergunta = 0;
+                const total = perguntasEmbaralhadas.length;
 
-        function atualizarCoracoes(animar = false) {
-                let html = '';
-                for (let i = 0; i < 3; i++) {
-                    const classe = i >= vida ? ' perdida' : (animar ? ' resetando' : '');
-                    html += '<span class="coracao' + classe + '">❤️</span>';
-                }
-                document.getElementById('coracoes').innerHTML = html;
+                function atualizarCoracoes(animar = false) {
+                    let html = '';
+                    for (let i = 0; i < 3; i++) {
+                        const classe = i >= vida ? ' perdida' : (animar ? ' resetando' : '');
+                        html += '<span class="coracao' + classe + '">❤️</span>';
+                    }
+                    document.getElementById('coracoes').innerHTML = html;
 
-                if (animar) {
-                    setTimeout(function () {
-                        document.querySelectorAll('.coracao').forEach(function (c) {
-                            c.classList.remove('resetando');
-                        });
-                    }, 1000);
-                }
-            }
-
-        function mostrarPergunta() {
-            const atual = perguntasEmbaralhadas[indicePergunta];
-
-            document.getElementById('textoPergunta').innerHTML = atual.pergunta;
-            document.getElementById('contador').innerHTML = 'PERGUNTA ' + (indicePergunta + 1) + ' DE ' + total;
-            document.getElementById('barra').style.width = (indicePergunta / total * 100) + '%';
-
-            const container = document.getElementById('contPerguntas');
-            container.innerHTML = '';
-
-            atual.opcoes.forEach(function(opcao, indice) {
-                const botao = document.createElement('button');
-                botao.className = 'pergunta';
-                botao.type = 'button';
-                botao.innerHTML = opcao;
-
-                if (indice === atual.resposta) {
-                    botao.onclick = function() {
-                        botao.classList.add('correta');
-                        desabilitarBotoes();
-                        setTimeout(function() {
-                            indicePergunta++;
-                            if (indicePergunta < total) {
-                                mostrarPergunta();
-                            } else {
-                                vida = 3;
-                               localStorage.setItem('vida', 3);
-                               atualizarCoracoes(true);
-                               setTimeout(function() {
-                               window.location.href = 'mundo2.html';
-                            }, 1200);
-                            }
+                    if (animar) {
+                        setTimeout(function () {
+                            document.querySelectorAll('.coracao').forEach(function (c) {
+                                c.classList.remove('resetando');
+                            });
                         }, 1000);
-                    };
-                } else {
-                    botao.onclick = function() {
-                        botao.classList.add('errada');
-                        perdeVida();
-                    };
+                    }
                 }
 
-                container.appendChild(botao);
-            });
-        }
+                function mostrarPergunta() {
+                    const atual = perguntasEmbaralhadas[indicePergunta];
 
-        function desabilitarBotoes() {
-            document.querySelectorAll('.pergunta').forEach(function(b) {
-                b.onclick = null;
-                b.style.opacity = '0.5';
-            });
-        }
+                    document.getElementById('textoPergunta').innerHTML = atual.pergunta;
+                    document.getElementById('contador').innerHTML = 'PERGUNTA ' + (indicePergunta + 1) + ' DE ' + total;
+                    document.getElementById('barra').style.width = (indicePergunta / total * 100) + '%';
 
-        function perdeVida() {
-            vida = vida - 1;
-            atualizarCoracoes();
-            if (vida <= 0) {
-                setTimeout(function() {
-                    window.location.href = 'main.html';
-                }, 800);
-            }
-            localStorage.setItem('vida', vida);
-        }
+                    const container = document.getElementById('contPerguntas');
+                    container.innerHTML = '';
 
-        atualizarCoracoes();
-        mostrarPergunta();
+                    atual.opcoes.forEach(function (opcao, indice) {
+                        const botao = document.createElement('button');
+                        botao.className = 'pergunta';
+                        botao.type = 'button';
+                        botao.innerHTML = opcao;
+
+                        if (indice === atual.resposta) {
+                            botao.onclick = function () {
+                                botao.classList.add('correta');
+                                desabilitarBotoes();
+                                setTimeout(function () {
+                                    indicePergunta++;
+                                    if (indicePergunta < total) {
+                                        mostrarPergunta();
+                                    } else {
+                                        vida = 3;
+                                        localStorage.setItem('vida', 3);
+                                        atualizarCoracoes(true);
+                                        setTimeout(function () {
+                                            // ← LINHA ALTERADA: era 'mundo2.html', agora vai para transição
+                                            window.location.href = 'transicao.html?para=mundo2.html&mundo=2';
+                                        }, 1200);
+                                    }
+                                }, 1000);
+                            };
+                        } else {
+                            botao.onclick = function () {
+                                botao.classList.add('errada');
+                                perdeVida();
+                            };
+                        }
+
+                        container.appendChild(botao);
+                    });
+                }
+
+                function desabilitarBotoes() {
+                    document.querySelectorAll('.pergunta').forEach(function (b) {
+                        b.onclick = null;
+                        b.style.opacity = '0.5';
+                    });
+                }
+
+                function perdeVida() {
+                    vida = vida - 1;
+                    atualizarCoracoes();
+                    if (vida <= 0) {
+                        setTimeout(function () {
+                            window.location.href = 'main.html';
+                        }, 800);
+                    }
+                    localStorage.setItem('vida', vida);
+                }
+
+                atualizarCoracoes();
+                mostrarPergunta();
+
     </script>
 </body>
 </html>
