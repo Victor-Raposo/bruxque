@@ -21,8 +21,8 @@ const perguntas = {
             resposta: 1
         },
         {
-            pergunta: "QUAL O NOME DA PARTE DE BRUSQUE QUE FICA DIVIDIDA POR UM RIO?",
-            opcoes: ["BEIRA-RIO", "LIMEIRA", "SANTA RITA"],
+            pergunta: "QUAL O MASCOTE DA FENARRECO?",
+            opcoes: ["MARRECO", "GATO", "CARNEIRO"],
             resposta: 0
         },
     ],
@@ -43,8 +43,8 @@ const perguntas = {
             resposta: 2
         },
         {
-            pergunta: "QUAL O MASCOTE DA FENARRECO?",
-            opcoes: ["GATO", "MARRECO", "CARNEIRO"],
+            pergunta: "QUAL O NOME DA PARTE DE BRUSQUE QUE FICA DIVIDIDA POR UM RIO?",
+            opcoes: ["BEIRA-RIO", "SANTA TERESINHA", "CENTRO"],
             resposta: 1
         },
         {
@@ -55,8 +55,8 @@ const perguntas = {
     ],
     mundo3: [
         {
-            pergunta: "QUAL O MAIOR SHOPPING DE ROUPAS DE BRUSQUE?",
-            opcoes: ["HAVAN", "FIP", "GRACHER"],
+            pergunta: "QUAL O NOME DO ATUAL PREFEITO DE BRUSQUE? (2026)",
+            opcoes: ["JORGINHO MELLO", "ANDRÉ VECHI", "LUCIANO HANG"],
             resposta: 1
         },
         {
