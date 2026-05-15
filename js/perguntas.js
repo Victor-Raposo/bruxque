@@ -38,8 +38,8 @@ const perguntas = {
             resposta: 2
         },
         {
-            pergunta: "QUAL DESTAS CORES NÃO ESTÁ NA BANDEIRA DE BRUSQUE?",
-            opcoes: ["VERDE", "AMARELO", "AZUL"],
+            pergunta: "BRUSQUE É CONHECIDA COMO A CIDADE DOS ______",
+            opcoes: ["SAPATOS", "SUCOS", "TECIDOS"],
             resposta: 2
         },
         {
@@ -60,8 +60,8 @@ const perguntas = {
             resposta: 1
         },
         {
-            pergunta: "BRUSQUE É CONHECIDA COMO A CIDADE DOS ______",
-            opcoes: ["SAPATOS", "SUCOS", "TECIDOS"],
+            pergunta: "QUAL COR NÃO ESTÁ NA BANDEIRA DE BRUSQUE?",
+            opcoes: ["AMARELO", "VERDE", "AZUL"],
             resposta: 2
         },
         {
