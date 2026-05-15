@@ -9,6 +9,22 @@
         min-height: 60px;
     }
 
+    #capivara1{
+        position: relative;
+        top: 163px;
+        right: 115px;
+        width: 80px;
+        margin: 0px;
+    }
+
+    #capivara2 {
+        position: relative;
+        top: 157px;
+        left: 115px;
+        width: 80px;
+        margin: 0px;
+    }
+
     .pergunta {
         font-size: 0.9rem;
         padding: 0.85rem 1.1rem;

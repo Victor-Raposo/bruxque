@@ -30,6 +30,16 @@ main {
     gap: 1.5rem;
 }
 
+/* GIF CAPIVARA */
+
+#capivara2 {
+    position: relative;
+    top: 176px;
+    left: 150px;
+    width: 80px;
+    margin: 0px;
+}
+
 /* TAG DO MUNDO */
 .mundo-tag {
     font-family: 'Nunito', sans-serif;
