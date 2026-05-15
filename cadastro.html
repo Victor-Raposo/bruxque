@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz Brusque</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@700&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #0d1b2a;
+            background-image: url(https://media.discordapp.net/attachments/1097881292365905961/1504967784780664882/Parque-das-Esculturas-Brusque.png?ex=6a08e9f8&is=6a079878&hm=9c4b93c9c77f2094c403393fca9617393a05e2f3eaa50a9bc4819f9c9cd547e5&=&format=webp&quality=lossless&width=808&height=538);
+            background-position: top center;
+            background-size: cover;
+            background-repeat: no-repeat;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Fredoka One', cursive;
+        }
+
+        main {
+            width: 100%;
+            max-width: 420px;
+            padding: 1.5rem 1.2rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.8rem;
+            animation: entrar 0.7s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+        }
+
+        @keyframes entrar {
+            from {
+                opacity: 0;
+                transform: scale(0.8) translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: scale(1) translateY(0);
+            }
+        }
+
+        .capivara {
+            width: 90px;
+            animation: balancear 2s ease-in-out infinite alternate;
+            filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.5));
+        }
+
+        @keyframes balancear {
+            from {
+                transform: rotate(-7deg) scale(1);
+            }
+
+            to {
+                transform: rotate(7deg) scale(1.08);
+            }
+        }
+
+        .titulo-quiz {
+            font-family: 'Fredoka One', cursive;
+            font-size: clamp(2.6rem, 10vw, 3.8rem);
+            text-align: center;
+            line-height: 1;
+            color: #fff;
+            text-shadow: 3px 3px 0 rgba(0, 0, 0, 0.45);
+        }
+
+        .titulo-quiz .verde {
+            color: #4ade80;
+        }
+
+        .card {
+            width: 100%;
+            background: rgba(255, 255, 255, 0.97);
+            border-radius: 26px;
+            padding: 1.6rem 1.5rem 1.5rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+        }
+
+        .erro-msg {
+            font-family: 'Fredoka One', cursive;
+            font-size: 1rem;
+            color: #ef4444;
+            text-align: center;
+            min-height: 1.3rem;
+            display: block;
+        }
+
+        .erro-msg.sacudir {
+            animation: sacudir 0.4s ease;
+        }
+
+        @keyframes sacudir {
+
+            0%,
+            100% {
+                transform: translateX(0);
+            }
+
+            20% {
+                transform: translateX(-8px);
+            }
+
+            40% {
+                transform: translateX(8px);
+            }
+
+            60% {
+                transform: translateX(-5px);
+            }
+
+            80% {
+                transform: translateX(5px);
+            }
+        }
+
+        .btn-comecar {
+            display: block;
+            width: 100%;
+            padding: 1rem;
+            background: #4ade80;
+            border: none;
+            border-radius: 16px;
+            color: #fff;
+            font-family: 'Fredoka One', cursive;
+            font-size: 1.45rem;
+            letter-spacing: 0.04em;
+            cursor: pointer;
+            text-shadow: 1px 2px 0 rgba(0, 0, 0, 0.2);
+            box-shadow: 0 5px 0 #16a34a;
+            transition: transform 0.1s, box-shadow 0.1s;
+        }
+
+        .btn-comecar:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 7px 0 #16a34a;
+        }
+
+        .btn-comecar:active {
+            transform: translateY(3px);
+            box-shadow: 0 2px 0 #16a34a;
+        }
+
+        .btn-comecar:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .estrelinhas {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            overflow: hidden;
+        }
+
+        .estrela {
+            position: absolute;
+            font-size: 1.3rem;
+            opacity: 0;
+            animation: flutuar var(--d) var(--delay) ease-in-out infinite alternate;
+        }
+
+        @keyframes flutuar {
+            from {
+                opacity: 0;
+                transform: translateY(0) scale(0.5);
+            }
+
+            to {
+                opacity: 0.55;
+                transform: translateY(-14px) scale(1);
+            }
+        }
+
+        body.saindo main {
+            animation: sair 0.45s ease-in both;
+        }
+
+        @keyframes sair {
+            from {
+                opacity: 1;
+                transform: scale(1);
+            }
+
+            to {
+                opacity: 0;
+                transform: scale(1.05) translateY(-20px);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="estrelinhas" id="estrelas"></div>
+
+    <main>
+        <img class="capivara"
+            src="https://media.discordapp.net/attachments/1097881292365905961/1504967786743599165/capivara1.png?ex=6a08e9f9&is=6a079879&hm=6361ece9d0bd1d4d973d9725e84513adec3416b4a44f542e9a9966abedb84e64&=&format=webp&quality=lossless"
+            alt="Capivara">
+
+        <h1 class="titulo-quiz">QUIZ<br><span class="verde">BRUSQUE!</span></h1>
+
+        <div class="card">
+            <p style="font-family:'Fredoka One',cursive; font-size:1.4rem; color:#1a1a2e; text-align:center; margin:0;">
+                ✏️ Quem é você?</p>
+
+            <div style="display:flex; flex-direction:column; gap:0.45rem; width:100%;">
+                <p style="font-family:'Fredoka One',cursive; font-size:1.05rem; color:#333; margin:0;">😊 Meu nome é...
+                </p>
+                <input id="inome" type="text" placeholder="escreva aqui!" maxlength="30" autocomplete="off"
+                    style="display:block; width:100%; padding:0.8rem 1rem; background:#f0fdf4; border:3px solid #86efac; border-radius:14px; color:#1a1a2e; font-family:'Fredoka One',cursive; font-size:1.15rem; outline:none; transition:border-color 0.2s, background 0.2s;">
+            </div>
+
+            <div style="display:flex; flex-direction:column; gap:0.45rem; width:100%;">
+                <p style="font-family:'Fredoka One',cursive; font-size:1.05rem; color:#333; margin:0;">🏫 Minha escola
+                    é...</p>
+                <input id="iescola" type="text" placeholder="escreva aqui!" maxlength="50" autocomplete="off"
+                    style="display:block; width:100%; padding:0.8rem 1rem; background:#f0fdf4; border:3px solid #86efac; border-radius:14px; color:#1a1a2e; font-family:'Fredoka One',cursive; font-size:1.15rem; outline:none; transition:border-color 0.2s, background 0.2s;">
+            </div>
+
+            <span class="erro-msg" id="erroMsg"></span>
+
+            <button class="btn-comecar" id="btnComecar" onclick="comecar()">🌟 VAMOS JOGAR!</button>
+        </div>
+    </main>
+
+    <script>
+        const emojis = ['⭐', '🌟', '✨', '💚', '🌿', '🏡', '🌈', '🌺'];
+        const div = document.getElementById('estrelas');
+        for (let i = 0; i < 14; i++) {
+            const s = document.createElement('div');
+            s.className = 'estrela';
+            s.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+            s.style.cssText = 'top:' + Math.random() * 90 + '%;left:' + Math.random() * 95 + '%;--d:' + (Math.random() * 2 + 1.5) + 's;--delay:' + Math.random() * 2 + 's;';
+            div.appendChild(s);
+        }
+
+        document.getElementById('inome').focus();
+
+        document.getElementById('inome').addEventListener('keydown', function (e) {
+            if (e.key === 'Enter') document.getElementById('iescola').focus();
+        });
+        document.getElementById('iescola').addEventListener('keydown', function (e) {
+            if (e.key === 'Enter') comecar();
+        });
+
+        function mostrarErro(msg, campoId) {
+            const erro = document.getElementById('erroMsg');
+            erro.textContent = msg;
+            erro.classList.remove('sacudir');
+            void erro.offsetWidth;
+            erro.classList.add('sacudir');
+            document.getElementById(campoId).focus();
+        }
+
+        function comecar() {
+            const nome = document.getElementById('inome').value.trim();
+            const escola = document.getElementById('iescola').value.trim();
+            if (!nome) { mostrarErro('🙈 Escreve o seu nome!', 'inome'); return; }
+            if (!escola) { mostrarErro('🙈 Escreve o nome da escola!', 'iescola'); return; }
+
+            localStorage.setItem('jogador_nome', nome);
+            localStorage.setItem('jogador_escola', escola);
+            localStorage.setItem('vida', 3);
+
+            document.getElementById('btnComecar').disabled = true;
+            document.body.classList.add('saindo');
+            setTimeout(function () { window.location.href = 'main.html'; }, 450);
+        }
+    </script>
+</body>
+
+</html>

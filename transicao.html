@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz Brusque — Próximo Mundo!</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@700;900&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #0d1b2a;
+            background-image: url(https://media.discordapp.net/attachments/1097881292365905961/1504967784780664882/Parque-das-Esculturas-Brusque.png?ex=6a08e9f8&is=6a079878&hm=9c4b93c9c77f2094c403393fca9617393a05e2f3eaa50a9bc4819f9c9cd547e5&=&format=webp&quality=lossless&width=808&height=538);
+            background-position: top center;
+            background-size: cover;
+            background-repeat: no-repeat;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Fredoka One', cursive;
+            overflow: hidden;
+        }
+
+        /* Overlay escuro para legibilidade */
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background: rgba(13, 27, 42, 0.55);
+            z-index: 0;
+        }
+
+        main {
+            position: relative;
+            z-index: 1;
+            width: 100%;
+            max-width: 460px;
+            padding: 2rem 1.5rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1.4rem;
+            text-align: center;
+        }
+
+        /* ── CAPIVARA SALTANDO ── */
+        .capivara-wrap {
+            animation: entrarCapivara 0.7s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+        }
+
+        .capivara-wrap img {
+            width: 110px;
+            animation: saltar 1.4s ease-in-out infinite alternate;
+            filter: drop-shadow(0 8px 16px rgba(0, 0, 0, 0.5));
+        }
+
+        @keyframes saltar {
+            from {
+                transform: translateY(0) rotate(-5deg) scale(1);
+            }
+
+            to {
+                transform: translateY(-18px) rotate(5deg) scale(1.07);
+            }
+        }
+
+        @keyframes entrarCapivara {
+            from {
+                opacity: 0;
+                transform: scale(0.5) translateY(40px);
+            }
+
+            to {
+                opacity: 1;
+                transform: scale(1) translateY(0);
+            }
+        }
+
+        /* ── BADGE DO MUNDO ── */
+        .badge-mundo {
+            font-family: 'Nunito', sans-serif;
+            font-size: 0.8rem;
+            font-weight: 900;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: #fff;
+            padding: 0.45rem 1.4rem;
+            border-radius: 99px;
+            animation: entrar 0.6s 0.1s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+        }
+
+        .badge-mundo.mundo2 {
+            background: #f59e0b;
+            box-shadow: 0 4px 0 #b45309;
+        }
+
+        .badge-mundo.mundo3 {
+            background: #E8472A;
+            box-shadow: 0 4px 0 #9a2e1a;
+        }
+
+        /* ── CARD PRINCIPAL ── */
+        .card {
+            width: 100%;
+            background: rgba(255, 255, 255, 0.97);
+            border-radius: 28px;
+            padding: 2rem 1.8rem 1.8rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1rem;
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.45);
+            animation: entrar 0.6s 0.2s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+        }
+
+        @keyframes entrar {
+            from {
+                opacity: 0;
+                transform: scale(0.85) translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: scale(1) translateY(0);
+            }
+        }
+
+        .parabens {
+            font-size: 0.95rem;
+            color: #555;
+            font-family: 'Nunito', sans-serif;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
+
+        .titulo-fase {
+            font-family: 'Fredoka One', cursive;
+            font-size: clamp(2rem, 8vw, 3rem);
+            line-height: 1.05;
+            color: #1a1a2e;
+        }
+
+        .titulo-fase .destaque {
+            display: block;
+        }
+
+        .titulo-fase .destaque.verde {
+            color: #22c55e;
+        }
+
+        .titulo-fase .destaque.amarelo {
+            color: #f59e0b;
+        }
+
+        .titulo-fase .destaque.vermelho {
+            color: #E8472A;
+        }
+
+        .msg {
+            font-family: 'Nunito', sans-serif;
+            font-weight: 700;
+            font-size: 1rem;
+            color: #444;
+            line-height: 1.5;
+        }
+
+        /* ── BARRA DE CONTAGEM REGRESSIVA ── */
+        .barra-wrap {
+            width: 100%;
+        }
+
+        .barra-label {
+            font-family: 'Nunito', sans-serif;
+            font-size: 0.8rem;
+            font-weight: 700;
+            color: #888;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 0.4rem;
+        }
+
+        .barra-bg {
+            width: 100%;
+            height: 10px;
+            background: #e5e7eb;
+            border-radius: 99px;
+            overflow: hidden;
+        }
+
+        .barra-fill {
+            height: 100%;
+            border-radius: 99px;
+            width: 100%;
+            animation: esvaziar 3s linear forwards;
+        }
+
+        .barra-fill.amarelo {
+            background: #f59e0b;
+        }
+
+        .barra-fill.vermelho {
+            background: #E8472A;
+        }
+
+        @keyframes esvaziar {
+            from {
+                width: 100%;
+            }
+
+            to {
+                width: 0%;
+            }
+        }
+
+        /* ── BOTÃO PULAR ── */
+        .btn-pular {
+            width: 100%;
+            padding: 1rem;
+            background: #4ade80;
+            border: none;
+            border-radius: 16px;
+            color: #fff;
+            font-family: 'Fredoka One', cursive;
+            font-size: 1.35rem;
+            letter-spacing: 0.04em;
+            cursor: pointer;
+            text-shadow: 1px 2px 0 rgba(0, 0, 0, 0.2);
+            box-shadow: 0 5px 0 #16a34a;
+            transition: transform 0.1s, box-shadow 0.1s;
+        }
+
+        .btn-pular:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 7px 0 #16a34a;
+        }
+
+        .btn-pular:active {
+            transform: translateY(3px);
+            box-shadow: 0 2px 0 #16a34a;
+        }
+
+        /* ── ESTRELINHAS FLUTUANTES ── */
+        .estrelinhas {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            overflow: hidden;
+            z-index: 0;
+        }
+
+        .estrela {
+            position: absolute;
+            font-size: 1.3rem;
+            opacity: 0;
+            animation: flutuar var(--d) var(--delay) ease-in-out infinite alternate;
+        }
+
+        @keyframes flutuar {
+            from {
+                opacity: 0;
+                transform: translateY(0) scale(0.5);
+            }
+
+            to {
+                opacity: 0.55;
+                transform: translateY(-14px) scale(1);
+            }
+        }
+
+        /* ── CONFETES ── */
+        .confete {
+            position: fixed;
+            width: 10px;
+            height: 10px;
+            border-radius: 2px;
+            top: -20px;
+            animation: cair var(--dur) var(--delay) ease-in forwards;
+            z-index: 2;
+            pointer-events: none;
+        }
+
+        @keyframes cair {
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 1;
+            }
+
+            100% {
+                transform: translateY(110vh) rotate(720deg);
+                opacity: 0;
+            }
+        }
+
+        /* Saída */
+        body.saindo main {
+            animation: sair 0.45s ease-in both;
+        }
+
+        @keyframes sair {
+            from {
+                opacity: 1;
+                transform: scale(1);
+            }
+
+            to {
+                opacity: 0;
+                transform: scale(1.05) translateY(-20px);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="estrelinhas" id="estrelas"></div>
+
+    <main>
+        <div class="capivara-wrap">
+            <img id="imgCapivara"
+                src="https://media.discordapp.net/attachments/1097881292365905961/1504967786743599165/capivara1.png?ex=6a08e9f9&is=6a079879&hm=6361ece9d0bd1d4d973d9725e84513adec3416b4a44f542e9a9966abedb84e64&=&format=webp&quality=lossless"
+                alt="Capivara">
+        </div>
+
+        <span class="badge-mundo" id="badgeMundo"></span>
+
+        <div class="card">
+            <p class="parabens">🎉 Mundo concluído!</p>
+
+            <h1 class="titulo-fase" id="tituloFase"></h1>
+
+            <p class="msg" id="msgFase"></p>
+
+            <div class="barra-wrap">
+                <p class="barra-label">Entrando em 3 segundos...</p>
+                <div class="barra-bg">
+                    <div class="barra-fill" id="barraFill"></div>
+                </div>
+            </div>
+
+            <button class="btn-pular" id="btnPular" onclick="irParaProximo()">
+                ▶ IR AGORA!
+            </button>
+        </div>
+    </main>
+
+    <script>
+        // ── LÊ PARÂMETROS DA URL ──────────────────────────
+        const params = new URLSearchParams(window.location.search);
+        const destino = params.get('para') || 'main.html';
+        const mundo = parseInt(params.get('mundo')) || 2;
+
+        // ── CONFIGURA CONTEÚDO POR MUNDO ─────────────────
+        const configs = {
+            2: {
+                badge: '⚡ MUNDO 2 — MÉDIO',
+                badgeClass: 'mundo2',
+                titulo: 'PREPARE-SE PARA O <span class="destaque amarelo">MUNDO 2!</span>',
+                msg: 'Ótimo trabalho! Agora as perguntas ficam mais difíceis. Você consegue? 💪',
+                barraClass: 'amarelo',
+                capivara: 'https://media.discordapp.net/attachments/1097881292365905961/1504967786743599165/capivara1.png?ex=6a08e9f9&is=6a079879&hm=6361ece9d0bd1d4d973d9725e84513adec3416b4a44f542e9a9966abedb84e64&=&format=webp&quality=lossless'
+            },
+            3: {
+                badge: '🔥 MUNDO 3 — DIFÍCIL',
+                badgeClass: 'mundo3',
+                titulo: 'PREPARE-SE PARA O <span class="destaque vermelho">MUNDO 3!</span>',
+                msg: 'Incrível! Agora é o desafio final. Só os melhores chegam aqui! 🏆',
+                barraClass: 'vermelho',
+                capivara: 'https://media.discordapp.net/attachments/1097881292365905961/1504967787007836221/capivara2.png?ex=6a08e9f9&is=6a079879&hm=47ab0ac845eab5e0398022667c27f816e671ef7c2a6bf17c5a7961a79411b1d4&=&format=webp&quality=lossless'
+            }
+        };
+
+        const cfg = configs[mundo] || configs[2];
+
+        document.getElementById('badgeMundo').textContent = cfg.badge;
+        document.getElementById('badgeMundo').classList.add(cfg.badgeClass);
+        document.getElementById('tituloFase').innerHTML = cfg.titulo;
+        document.getElementById('msgFase').textContent = cfg.msg;
+        document.getElementById('barraFill').classList.add(cfg.barraClass);
+        document.getElementById('imgCapivara').src = cfg.capivara;
+
+        // ── CONFETES ─────────────────────────────────────
+        const cores = ['#4ade80', '#f59e0b', '#f87171', '#60a5fa', '#c084fc', '#fff'];
+        for (let i = 0; i < 50; i++) {
+            const c = document.createElement('div');
+            c.className = 'confete';
+            c.style.cssText =
+                'left:' + Math.random() * 100 + '%;' +
+                'background:' + cores[Math.floor(Math.random() * cores.length)] + ';' +
+                'width:' + (Math.random() * 8 + 6) + 'px;' +
+                'height:' + (Math.random() * 8 + 6) + 'px;' +
+                '--dur:' + (Math.random() * 2 + 2) + 's;' +
+                '--delay:' + (Math.random() * 1.5) + 's;';
+            document.body.appendChild(c);
+        }
+
+        // ── ESTRELINHAS ───────────────────────────────────
+        const emojis = ['⭐', '🌟', '✨', '💚', '🌿', '🎉'];
+        const divEstrelas = document.getElementById('estrelas');
+        for (let i = 0; i < 12; i++) {
+            const s = document.createElement('div');
+            s.className = 'estrela';
+            s.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+            s.style.cssText =
+                'top:' + Math.random() * 90 + '%;' +
+                'left:' + Math.random() * 95 + '%;' +
+                '--d:' + (Math.random() * 2 + 1.5) + 's;' +
+                '--delay:' + Math.random() * 2 + 's;';
+            divEstrelas.appendChild(s);
+        }
+
+        // ── AUTO-REDIRECIONAR APÓS 3s ─────────────────────
+        const timer = setTimeout(irParaProximo, 3000);
+
+        function irParaProximo() {
+            clearTimeout(timer);
+            document.getElementById('btnPular').disabled = true;
+            document.body.classList.add('saindo');
+            setTimeout(function () {
+                window.location.href = destino;
+            }, 450);
+        }
+    </script>
+</body>
+
+</html>

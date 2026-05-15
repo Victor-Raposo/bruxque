@@ -28,15 +28,25 @@ const perguntas = {
     ],
     mundo2: [
         {
-            pergunta: "QUAL DESSAS AVES QUE POR LEI MUNICIPAL É O SÍMBOLO DE BRUSQUE?",
-            opcoes: ["ERRADA", "CERTA", "ERRADA"],
-            resposta: 1
+            tipo: "imagem",
+            pergunta: "QUAL DESSAS AVES É O SÍMBOLO MUNICIPAL DE BRUSQUE POR LEI?",
+            opcoes: [
+                { imagem: "https://media.discordapp.net/attachments/1097881292365905961/1504967785258811422/ave1.jpg?ex=6a08e9f8&is=6a079878&hm=5930e336559ff7919853f02c9d6d5653d14268bfa10e24960ed848cba803f92b&=&format=webp", nome: "SAÍRA-TRICOLOR" },
+                { imagem: "https://media.discordapp.net/attachments/1097881292365905961/1504967785694892092/ave2.jpg?ex=6a08e9f9&is=6a079879&hm=0e79874bcfb6fdfb75033787b8a9b8dde22470a9c5eeaa1a7942ed5265bbee36&=&format=webp", nome: "BEM-TE-VI" },
+                { imagem: "https://media.discordapp.net/attachments/1097881292365905961/1504967786118778931/ave3.jpg?ex=6a08e9f9&is=6a079879&hm=667de4710422cca90b501652e2f6720bcb16c68ee646eaff1e7cac217174b6fa&=&format=webp&width=570&height=856", nome: "ARARA-CANINDÉ" },
+                { imagem: "https://media.discordapp.net/attachments/1097881292365905961/1504967786437541968/ave4.jpg?ex=6a08e9f9&is=6a079879&hm=bd0cb68b0380f2f2cee3942c94df361c182f0f795b554772f36a3e8c99aa768a&=&format=webp", nome: "QUERO-QUERO" }
+            ],
+            resposta: 0 
         },
+
         {
-            pergunta: "PERGUNTA SOBRE O VÍDEO",
-            opcoes: ["ERADDA", "ERRADA", "CERTA"],
-            resposta: 2
+            tipo: "video",
+            videoId: "C0EO2HzDxUs",
+            pergunta: "ASSISTA AO VÍDEO: QUEM FORAM OS COLONIZADORES DE BRUSQUE?",
+            opcoes: ["ALEMÃES", "ITALIANOS", "JAPONESES"],
+            resposta: 0
         },
+
         {
             pergunta: "BRUSQUE É CONHECIDA COMO A CIDADE DOS ______",
             opcoes: ["SAPATOS", "SUCOS", "TECIDOS"],

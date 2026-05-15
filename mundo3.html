@@ -1,16 +1,141 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mundo 3 — Difícil</title>
     <link rel="stylesheet" href="estilos/hard.css">
     <link rel="stylesheet" href="estilos/media-query.css">
+    <style>
+        @keyframes heartEntrar {
+            0% {
+                transform: scale(0) rotate(-25deg);
+                opacity: 0;
+            }
+
+            60% {
+                transform: scale(1.35) rotate(8deg);
+                opacity: 1;
+            }
+
+            100% {
+                transform: scale(1) rotate(0deg);
+                opacity: 1;
+            }
+        }
+
+        @keyframes heartPerder {
+            0% {
+                transform: scale(1);
+            }
+
+            15% {
+                transform: scale(1.4);
+            }
+
+            35% {
+                transform: scale(0.8) rotate(-10deg);
+                filter: grayscale(0);
+            }
+
+            60% {
+                transform: scale(0.6) rotate(5deg);
+                filter: grayscale(0.5);
+            }
+
+            100% {
+                transform: scale(1);
+                filter: grayscale(1);
+                opacity: 0.3;
+            }
+        }
+
+        @keyframes heartRestaurar {
+            0% {
+                transform: scale(0);
+                opacity: 0;
+                filter: grayscale(1);
+            }
+
+            50% {
+                transform: scale(1.4);
+                opacity: 1;
+                filter: grayscale(0);
+            }
+
+            100% {
+                transform: scale(1);
+                opacity: 1;
+                filter: grayscale(0);
+            }
+        }
+
+        .coracao {
+            display: inline-block;
+            font-size: 1.4rem;
+        }
+
+        .coracao.animar-entrar {
+            animation: heartEntrar 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+        }
+
+        .coracao.animar-perder {
+            animation: heartPerder 0.6s ease-in-out both;
+        }
+
+        .coracao.animar-restaurar {
+            animation: heartRestaurar 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+        }
+
+        .coracao.perdida {
+            filter: grayscale(1);
+            opacity: 0.3;
+        }
+
+        main {
+            animation: telaEntrar 0.5s ease both;
+        }
+
+        @keyframes telaEntrar {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes flashErro {
+
+            0%,
+            100% {
+                background-color: transparent;
+            }
+
+            50% {
+                background-color: rgba(248, 113, 113, 0.12);
+            }
+        }
+
+        body.erro-flash {
+            animation: flashErro 0.4s ease;
+        }
+    </style>
+
 </head>
+
 <body>
     <main>
-        <img id="capivara2" src="https://media.discordapp.net/attachments/1097881292365905961/1504967787007836221/capivara2.png?ex=6a08e9f9&is=6a079879&hm=47ab0ac845eab5e0398022667c27f816e671ef7c2a6bf17c5a7961a79411b1d4&=&format=webp&quality=lossless" alt="Capivara">
-        <span class="mundo-tag" style="color:white; background:#E8472A; border-color:#E8472A; text-shadow: 1px 1px 1px black;">🔥 MUNDO 3 — DIFÍCIL</span>
+        <img id="capivara2"
+            src="https://media.discordapp.net/attachments/1097881292365905961/1504967787007836221/capivara2.png?ex=6a08e9f9&is=6a079879&hm=47ab0ac845eab5e0398022667c27f816e671ef7c2a6bf17c5a7961a79411b1d4&=&format=webp&quality=lossless"
+            alt="Capivara">
+        <span class="mundo-tag"
+            style="color:white; background:#E8472A; border-color:#E8472A; text-shadow: 1px 1px 1px black;">🔥 MUNDO 3 —
+            DIFÍCIL</span>
 
         <div class="barra-container">
             <div class="barra-fill" id="barra" style="width: 0%; background: #f87171;"></div>
@@ -35,20 +160,26 @@
         let indicePergunta = 0;
         const total = perguntasEmbaralhadas.length;
 
-       function atualizarCoracoes(animar = false) {
-            let html = '';
+        function renderCoracoes(animTipo) {
+            const cont = document.getElementById('coracoes');
+            cont.innerHTML = '';
             for (let i = 0; i < 3; i++) {
-                const classe = i >= vida ? ' perdida' : (animar ? ' resetando' : '');
-                html += '<span class="coracao' + classe + '">❤️</span>';
-            }
-            document.getElementById('coracoes').innerHTML = html;
-
-            if (animar) {
-                setTimeout(function () {
-                    document.querySelectorAll('.coracao').forEach(function (c) {
-                        c.classList.remove('resetando');
-                    });
-                }, 1000);
+                const span = document.createElement('span');
+                const perdida = i >= vida;
+                span.className = 'coracao' + (perdida ? ' perdida' : '');
+                span.textContent = '❤️';
+                span.style.animationDelay = (i * 0.08) + 's';
+                if (!perdida && animTipo === 'entrar') {
+                    span.classList.add('animar-entrar');
+                } else if (perdida && animTipo === 'perder' && i === vida) {
+                    span.classList.remove('perdida');
+                    span.classList.add('animar-perder');
+                    span.style.animationDelay = '0s';
+                    setTimeout(function () { span.classList.add('perdida'); }, 600);
+                } else if (!perdida && animTipo === 'restaurar') {
+                    span.classList.add('animar-restaurar');
+                }
+                cont.appendChild(span);
             }
         }
 
@@ -57,63 +188,68 @@
                 document.getElementById('textoPergunta').innerHTML = 'PERGUNTAS DO MUNDO 3 AINDA NÃO FORAM ADICIONADAS.';
                 return;
             }
-
             const atual = perguntasEmbaralhadas[indicePergunta];
             document.getElementById('textoPergunta').innerHTML = atual.pergunta;
-            document.getElementById('contador').innerHTML = 'PERGUNTA ' + (indicePergunta + 1) + ' DE ' + total;
-            document.getElementById('barra').style.width = (indicePergunta / total * 100) + '%';
+            document.getElementById('contador').innerHTML =
+                'PERGUNTA ' + (indicePergunta + 1) + ' DE ' + total;
+            document.getElementById('barra').style.width =
+                (indicePergunta / total * 100) + '%';
 
             const container = document.getElementById('contPerguntas');
             container.innerHTML = '';
 
-            atual.opcoes.forEach(function(opcao, indice) {
+            atual.opcoes.forEach(function (opcao, indice) {
                 const botao = document.createElement('button');
                 botao.className = 'pergunta';
                 botao.type = 'button';
                 botao.innerHTML = opcao;
 
                 if (indice === atual.resposta) {
-                    botao.onclick = function() {
+                    botao.onclick = function () {
                         botao.classList.add('correta');
                         desabilitarBotoes();
-                        setTimeout(function() {
+                        setTimeout(function () {
                             indicePergunta++;
                             if (indicePergunta < total) {
                                 mostrarPergunta();
                             } else {
                                 window.location.href = 'venceu.html';
                             }
-                        }, 1000);
+                        }, 900);
                     };
                 } else {
-                    botao.onclick = function() {
+                    botao.onclick = function () {
                         botao.classList.add('errada');
                         perdeVida();
                     };
                 }
-
                 container.appendChild(botao);
             });
         }
 
         function desabilitarBotoes() {
-            document.querySelectorAll('.pergunta').forEach(function(b) {
+            document.querySelectorAll('.pergunta').forEach(function (b) {
                 b.onclick = null;
                 b.style.opacity = '0.5';
             });
         }
 
         function perdeVida() {
-            vida = vida - 1;
-            atualizarCoracoes();
-            if (vida <= 0) {
-                setTimeout(function() { window.location.href = 'main.html'; }, 800);
-            }
+            vida--;
             localStorage.setItem('vida', vida);
+            renderCoracoes('perder');
+            document.body.classList.remove('erro-flash');
+            void document.body.offsetWidth;
+            document.body.classList.add('erro-flash');
+            if (vida <= 0) {
+                setTimeout(function () { window.location.href = 'main.html'; }, 900);
+            }
         }
 
-        atualizarCoracoes();
+        renderCoracoes('entrar');
         mostrarPergunta();
+
     </script>
 </body>
+
 </html>
