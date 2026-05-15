@@ -38,18 +38,18 @@ const perguntas = {
             resposta: 2
         },
         {
-            pergunta: "PINTE A BANDEIRA",
-            opcoes: ["ERRADA", "ERRADA", "CERTA"],
+            pergunta: "QUAL DESTAS CORES NÃO ESTÁ NA BANDEIRA DE BRUSQUE?",
+            opcoes: ["VERDE", "AMARELO", "AZUL"],
             resposta: 2
         },
         {
             pergunta: "QUAL O NOME DA PARTE DE BRUSQUE QUE FICA DIVIDIDA POR UM RIO?",
-            opcoes: ["BEIRA-RIO", "SANTA TERESINHA", "CENTRO"],
+            opcoes: ["SANTA TERESINHA", "BEIRA-RIO", "CENTRO"],
             resposta: 1
         },
         {
-            pergunta: "QUAL O MAIOR SUPERMERCADO DE BRUSQUE?",
-            opcoes: ["ARCHER", "BISTEK", "ANGELONI"],
+            pergunta: "QUAL A LOJA QUE FOI CRIADA EM BRUSQUE, E HOJE ESTÁ PRESENTE NO BRASIL INTEIRO?",
+            opcoes: ["HAVAN", "ARCHER", "FIP"],
             resposta: 0
         },
     ],
@@ -76,7 +76,7 @@ const perguntas = {
         },
         {
             pergunta: "QUAL FOI A PRIMEIRA EDIÇÃO DA FENARRECO?",
-            opcoes: ["1986", "1911", "2001"],
+            opcoes: ["1986", "1911", "2018"],
             resposta: 0
         },
     ]
