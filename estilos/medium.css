@@ -137,48 +137,6 @@ h1 {
     color: #f87171;
 }
 
-/* BOTÕES DA TELA INICIAL E FINAL */
-.btn-mundo {
-    width: 100%;
-    padding: 1.1rem 1.5rem;
-    border-radius: 12px;
-    border: 1px solid;
-    font-family: 'Nunito', sans-serif;
-    font-size: 1rem;
-    font-weight: 700;
-    letter-spacing: 0.08em;
-    cursor: pointer;
-    transition: transform 0.15s, background 0.2s;
-    text-align: left;
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-}
-
-.btn-mundo:hover { transform: translateX(4px); }
-.btn-mundo:active { transform: scale(0.98); }
-
-.btn-facil {
-    background: rgba(74, 222, 128, 0.800);
-    border-color: rgb(51, 153, 88);
-    color: white;
-}
-.btn-facil:hover { background: rgba(74, 222, 128, 1); }
-
-.btn-medio {
-    background: rgba(251, 191, 36, 0.800);
-    border-color: rgba(251, 191, 36, 1);
-    color: white;
-}
-.btn-medio:hover { background: rgba(251, 191, 36, 1); }
-
-.btn-dificil {
-    background: rgba(248, 113, 113, 0.800);
-    border-color: rgba(248, 113, 113, 1);
-    color: white;
-}
-.btn-dificil:hover { background: rgba(248, 113, 113, 1); }
-
 /* TÍTULO PRINCIPAL (main.html e venceu.html) */
 .titulo-principal {
     font-family: 'Bebas Neue', sans-serif;
@@ -200,31 +158,6 @@ h1 {
     background-color: rgba(0, 0, 0, 0.800);
     padding: 5px;
     border-radius: 3px;
-}
-
-/* TELA DE VITÓRIA */
-.trofeu {
-    font-size: 4rem;
-    text-align: center;
-}
-
-.btn-reiniciar {
-    padding: 1rem 2.5rem;
-    background: rgba(74, 222, 128, 0.1);
-    border: 1px solid rgba(74, 222, 128, 0.4);
-    border-radius: 12px;
-    color: #4ade80;
-    font-family: 'Nunito', sans-serif;
-    font-size: 1rem;
-    font-weight: 700;
-    letter-spacing: 0.08em;
-    cursor: pointer;
-    transition: background 0.2s, transform 0.1s;
-}
-
-.btn-reiniciar:hover {
-    background: rgba(74, 222, 128, 0.2);
-    transform: translateY(-2px);
 }
 
 /* BARRA DE PROGRESSO */
