@@ -4,14 +4,36 @@
 
 ## Conceitos
 
-A proposta é criar um quiz infantil, com a temática de brusque. As perguntas abordam questões históricas, culturais e sociais da cidade.
+O objetivo do jogo é ensinar de forma divertida conteúdos sobre Brusque através de perguntas e desafios progressivos.
+
+Os temas abordados incluem:
+
+- História da cidade
+- Cultura local
+- Sociedade e costumes
+- Curiosidades sobre Brusque
 
 ## Funcionamento
 
-O jogo é dividido em 3 mundos. Um dos mundos é fácil, outro médio, e outro díficil. Cada um dos mundos contém 5 fases. Além disso, o jogo contém um sistema de vidas, onde o jogador terá 3 vidas. A cada resposta errada, o jogador perde uma delas, e ao chegar a zero, ele volta ao menu principal, podendo tentar novamente do início.
+O jogo é dividido em 3 mundos, cada um com um nível de dificuldade diferente:
+
+| Mundo | Dificuldade |
+|--------|-------------|
+| Mundo 1 | Fácil |
+| Mundo 2 | Médio |
+| Mundo 3 | Difícil |
+
+Cada mundo possui 5 fases com perguntas temáticas.
+
+O jogador deve responder corretamente para avançar pelas fases e completar o jogo.
+
+## Tecnologias Utilizadas
+
+-HTML e CSS
+-JavaScript
 
 ## Membros
 
-Eduardo Vandré Machnicki,
-Mateus Gomes Nuss,
-Victor Hugo Lira de Souza,
+- Eduardo Vandré Machnicki
+- Mateus Gomes Nuss
+- Victor Hugo Lira de Souza
